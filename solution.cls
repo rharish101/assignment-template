@@ -24,6 +24,7 @@
 \RequirePackage[plain]{algorithm}
 \RequirePackage{fullwidth}
 \RequirePackage{hyperref}
+\RequirePackage{titlesec}
 
 % Default fonts
 \setmainfont{Roboto Light}
@@ -183,9 +184,10 @@
 \belowrulesep=0ex
 \renewcommand{\arraystretch}{1.3}
 
-% For heading
-\newcommand{\heading}[1]{\noindent\underline{#1}\par\vspace{+1mm}}
-\newcommand{\subheading}[1]{\noindent\textit{#1}\par}
+% For sections, subsections and subsubsections
+\titleformat{\section}{\vspace{-3mm}\large}{\thesection}{2mm}{\underline}[\vspace{-2mm}]
+\titleformat{\subsection}{\itshape}{\thesubsection}{2mm}{}[\vspace{-2mm}]
+\titleformat{\subsubsection}{}{\thesubsubsection}{2mm}{}
 
 % Lengths
 \setlength{\voffset}{-2mm}
