@@ -27,10 +27,10 @@
 \RequirePackage{titlesec}
 
 % Default fonts
-\setmainfont{Roboto Light}
+\setsansfont{Roboto Light}
+\renewcommand{\familydefault}{\sfdefault}
 \newfontfamily\defaultfont{Roboto Light}
 \setmonofont[Scale=0.8]{RobotoMono Nerd Font}
-\setmathrm{CMU Serif}
 \linespread{1.1}
 
 % Code Blocks
@@ -53,8 +53,9 @@
             framerule=0pt,
             framesep=0.5mm,
             linenos,
-            numbersep=-3.1cm,
-            xleftmargin=-2.2cm,
+            numbersep=3mm,
+            xleftmargin=1.3cm,
+            autogobble,
         ]
         {#1}%
 }
@@ -164,6 +165,9 @@
     \vspace{-3mm}
 }
 
+% Used for "solution" environment and "\maketitle" command
+\newcommand{\centerrule}{\begin{center}\rule{45mm}{0.5pt}\end{center}}
+
 % Problem Solution Environment
 \newcounter{SolutionCount}
 \newenvironment{solution}[1][Question \arabic{SolutionCount}]
@@ -172,9 +176,7 @@
     \stepcounter{SolutionCount}
     \noindent\textbf{\fontsize{14}{17}\selectfont #1:}\par
 }
-{
-    \begin{center}\rule{45mm}{0.5pt}\end{center}
-}
+{\centerrule}
 
 % For tabular environment
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
@@ -223,7 +225,7 @@
 \renewcommand{\maketitle}
 {
     \begin{center}
-        \fontfamily{cmr}\selectfont
+        \rmfamily
         {\huge \SolutionName}\\[+2mm]
         {\Large \CourseNo: \CourseName\\[+2mm]
                 \AssignName}\\[+3mm]
@@ -235,6 +237,6 @@
             \end{tabular}
         }
         \makeatother\\[+3mm]
-        \rule{45mm}{0.5pt}\\[+9mm]
     \end{center}
+    \centerrule\vspace{1mm}
 }
