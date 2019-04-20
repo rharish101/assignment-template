@@ -25,10 +25,25 @@
 \RequirePackage{fullwidth}
 \RequirePackage{hyperref}
 \RequirePackage{titlesec}
+\RequirePackage{pgffor}
 
-% Default fonts
-\setsansfont{Roboto Light}
 \renewcommand{\familydefault}{\sfdefault}
+% Set default fonts, if they exist
+\IfFontExistsTF{Roboto Light}{\setsansfont{Roboto Light}}{}
+% Iterate over possible Roboto Mono fonts to see which exists
+\def\robomonolist{
+    RobotoMono Nerd Font,
+    Roboto Mono Light for Powerline,
+    Roboto Mono Light
+}
+\foreach \robomonofont in \robomonolist% chktex 1
+{%
+    \IfFontExistsTF{\robomonofont}
+    {%
+        \setmonofont[Scale=0.8]{\robomonofont}
+        \breakforeach%
+    }{}
+}
 \setmonofont[Scale=0.8]{RobotoMono Nerd Font}
 \linespread{1.1}
 

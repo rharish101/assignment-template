@@ -38,7 +38,6 @@ This template is intended to be used with XeLaTeX.
   The optional argument states the type of assignment (by default "Solution").
 
 ## Fonts
-The following fonts are necessary as they are used:
+I use the following fonts, and if installed, the solution class picks it up.
 * Roboto Light
-* Roboto Mono Light (or Roboto Mono Light for Powerline or RobotoMono Nerd Font)
-* CMU Serif 
+* Roboto Mono Light (or one of Roboto Mono Light for Powerline and RobotoMono Nerd Font)
