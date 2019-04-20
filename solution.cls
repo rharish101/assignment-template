@@ -29,14 +29,13 @@
 % Default fonts
 \setsansfont{Roboto Light}
 \renewcommand{\familydefault}{\sfdefault}
-\newfontfamily\defaultfont{Roboto Light}
 \setmonofont[Scale=0.8]{RobotoMono Nerd Font}
 \linespread{1.1}
 
 % Code Blocks
 \newenvironment{code}[1]
 {%
-    \VerbatimEnvironment
+    \VerbatimEnvironment%
     \definecolor{codegray}{gray}{0.9}
     \noindent\begin{minipage}{16.6cm}
         \renewcommand{\theFancyVerbLine}
@@ -67,10 +66,10 @@
 % Pseudocode
 \algrenewcommand\alglinenumber[1]{\small\upshape\ttfamily#1\hspace*{2mm}}
 \renewcommand{\algorithmiccomment}[1]{\hfill// #1}
-\newcommand{\MyCall}[2]{\textsc{#1(}#2\textsc{)}}
+\newcommand{\MyCall}[2]{\textsc{#1(}#2\textsc{)}}% chktex 9
 \newcommand{\Null}{\textsc{Null}}
 \NewEnviron{pseudocode}[2]
-{
+{%
     \ifthenelse{\equal{#1}{continue}}
         {\newpage}
     \noindent{\textsc{#1} (\textit{#2})\par}
@@ -80,7 +79,7 @@
     \begin{fullwidth}[width=\linewidth-12mm,leftmargin=0cm,rightmargin=1cm]
         \begin{algorithm}[H]
             \begin{algorithmic}[1]
-                \fontsize{11}{15}\selectfont\slshape\BODY
+                \fontsize{11}{15}\selectfont\slshape\BODY%
             \end{algorithmic}
         \end{algorithm}
     \end{fullwidth}
@@ -91,7 +90,7 @@
 
 % Math box
 \RenewEnviron{math}[1][normal]
-{
+{%
     \setlength{\mathindent}{3mm}
     \setlength{\jot}{2mm}
     \vspace{+7mm}
@@ -99,7 +98,7 @@
         {\newmdenv[topline=false]{myframe}}
         {\newmdenv[topline=true,bottomline=true]{myframe}}
     \begin{myframe}[userdefinedwidth=16.6cm,linewidth=0.45pt,leftmargin=0mm,innerleftmargin=1mm,innertopmargin=1mm,innerbottommargin=1mm]
-    {
+    {%
         \begin{minipage}[c]{15.55cm}
             \vspace{-2mm}
             {\small
@@ -116,7 +115,7 @@
 }
 % Without numbering
 \NewEnviron{math*}[1][normal]
-{
+{%
     \setlength{\mathindent}{3mm}
     \setlength{\jot}{2mm}
     \vspace{+7mm}
@@ -124,7 +123,7 @@
         {\newmdenv[topline=false]{myframe}}
         {\newmdenv[topline=true,bottomline=true]{myframe}}
     \begin{myframe}[userdefinedwidth=16.6cm,linewidth=0.45pt,leftmargin=0mm,innerleftmargin=1mm,innertopmargin=1mm,innerbottommargin=1mm]
-    {
+    {%
         \begin{minipage}[c]{15.55cm}
             \vspace{-2mm}
             {\small
@@ -141,27 +140,27 @@
 }
 
 % Unordered Lists
-\let\olditemize\itemize
-\let\endolditemize\enditemize
+\let\olditemize\itemize%
+\let\endolditemize\enditemize%
 \RenewEnviron{itemize}
-{
+{%
     \vspace{-4mm}
     \olditemize[leftmargin=0mm,rightmargin=-0.5mm]
-        \BODY
-    \endolditemize
+        \BODY%
+    \endolditemize%
     \vspace{-3mm}
 }
 
 % Ordered Lists
-\let\oldenumerate\enumerate
-\let\endoldenumerate\endenumerate
+\let\oldenumerate\enumerate%
+\let\endoldenumerate\endenumerate%
 \RenewEnviron{enumerate}
-{
+{%
     \vspace{-4mm}
     \oldenumerate[leftmargin=0mm]
         \setlength{\itemsep}{-0.5mm}
-        \BODY
-    \endoldenumerate
+        \BODY%
+    \endoldenumerate%
     \vspace{-3mm}
 }
 
@@ -188,7 +187,7 @@
 
 % For sections, subsections and subsubsections
 \titleformat{\section}{\vspace{-3mm}\large}{\thesection}{2mm}{\underline}[\vspace{-2mm}]
-\titleformat{\subsection}{\itshape}{\thesubsection}{2mm}{}[\vspace{-2mm}]
+\titleformat{\subsection}{\itshape}{\thesubsection}{2mm}{}[\vspace{-2mm}]% chktex 6
 \titleformat{\subsubsection}{}{\thesubsubsection}{2mm}{}
 
 % Lengths
@@ -198,23 +197,23 @@
 \setlength{\parskip}{2mm}
 
 % Default author
-\author{
+\author{%
     Harish Rajagopal\\
     160552
 }
 
 % Set details
 \newcommand{\setdetails}[4][Solution]
-{
+{%
     \newcommand{\SolutionName}{#1}
     \newcommand{\CourseNo}{#2}
     \newcommand{\CourseName}{#3}
     \newcommand{\AssignName}{#4}
-    \hypersetup
-    {
+    \hypersetup%
+    {%
         colorlinks,
-        pdfinfo={
-            Author={Harish Rajagopal - 160552},
+        pdfinfo={%
+            Author={Harish Rajagopal --- 160552},
             Title={{\CourseNo}: {\AssignName} {\SolutionName}},
             Subject={Solution of {\AssignName} for {\CourseNo}: {\CourseName}}
         }
@@ -223,17 +222,17 @@
 
 % My Modified Title
 \renewcommand{\maketitle}
-{
+{%
     \begin{center}
         \rmfamily
         {\huge \SolutionName}\\[+2mm]
         {\Large \CourseNo: \CourseName\\[+2mm]
                 \AssignName}\\[+3mm]
         \makeatletter
-        {
+        {%
             \large
             \begin{tabular}[t]{c}
-                \@author
+                \@author%
             \end{tabular}
         }
         \makeatother\\[+3mm]
