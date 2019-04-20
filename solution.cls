@@ -154,30 +154,9 @@
     \vspace{+3mm}
 }
 
-% Unordered Lists
-\let\olditemize\itemize%
-\let\endolditemize\enditemize%
-\RenewEnviron{itemize}
-{%
-    \vspace{-4mm}
-    \olditemize[leftmargin=0mm,rightmargin=-0.5mm]
-        \BODY%
-    \endolditemize%
-    \vspace{-3mm}
-}
-
-% Ordered Lists
-\let\oldenumerate\enumerate%
-\let\endoldenumerate\endenumerate%
-\RenewEnviron{enumerate}
-{%
-    \vspace{-4mm}
-    \oldenumerate[leftmargin=0mm]
-        \setlength{\itemsep}{-0.5mm}
-        \BODY%
-    \endoldenumerate%
-    \vspace{-3mm}
-}
+% Lists
+\setlist[itemize,1]{leftmargin=0mm,rightmargin=-0.5mm}
+\setlist[enumerate,1]{leftmargin=0mm,itemsep=-1mm}
 
 % Used for "solution" environment and "\maketitle" command
 \newcommand{\centerrule}{\begin{center}\rule{45mm}{0.5pt}\end{center}}
