@@ -3,29 +3,27 @@
 % ======================================================================
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{solution}[2018/08/25 Assignment solution class]
-\LoadClass[11pt]{article}
+\LoadClass[11pt,a4paper]{article}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 
-\RequirePackage[margin=2.5cm]{geometry}
-\RequirePackage{anyfontsize}
-\RequirePackage{environ}
-\RequirePackage[gray]{xcolor}
-\RequirePackage{minted}
-\RequirePackage[fleqn]{amsmath}
-\RequirePackage{amssymb}
-\RequirePackage{enumitem}
-\RequirePackage{mdframed}
-\RequirePackage{ifthen}
-\RequirePackage{array,multirow,booktabs,longtable}
-\RequirePackage{fontspec}
-\RequirePackage{algpseudocode}
-\RequirePackage[plain]{algorithm}
-\RequirePackage{fullwidth}
-\RequirePackage{hyperref}
-\RequirePackage{titlesec}
-\RequirePackage{pgffor}
+\RequirePackage[margin=2.5cm]{geometry}  % For setting margins
+\RequirePackage{environ}  % For custom math environments
+\RequirePackage[gray]{xcolor}  % Make the document grayscale and define custom colors
+\RequirePackage{minted}  % For code
+\RequirePackage[fleqn]{amsmath}  % For the align environment used in custom math environments
+\RequirePackage{enumitem}  % Setting options for itemize and enumerate
+\RequirePackage{mdframed}  % Boxes for custom math environments
+\RequirePackage{ifthen}  % If-else in latex
+\RequirePackage{array,multirow,booktabs,longtable}  % For tabular environments
+\RequirePackage{fontspec}  % For setting default fonts, if available
+\RequirePackage[plain]{algorithm}  % For the algorithm environment used in pseudocode
+\RequirePackage{algpseudocode}  % For the default formatting used in pseudocode
+\RequirePackage{fullwidth}  % Set width and left-right margins on pseudocode
+\RequirePackage{hyperref}  % For coloring links and setting PDF info
+\RequirePackage{titlesec}  % For formatting sections, subsections, etc.
+\RequirePackage{pgffor}  % foreach loop in latex
 
 \renewcommand{\familydefault}{\sfdefault}
 % Set default fonts, if they exist
@@ -67,8 +65,8 @@
             framerule=0pt,
             framesep=0.5mm,
             linenos,
-            numbersep=3mm,
-            xleftmargin=1.3cm,
+            numbersep=1mm,
+            xleftmargin=9mm,
             autogobble,
         ]
         {#1}%
@@ -83,28 +81,30 @@
 \renewcommand{\algorithmiccomment}[1]{\hfill// #1}
 \newcommand{\MyCall}[2]{\textsc{#1(}#2\textsc{)}}% chktex 9
 \newcommand{\Null}{\textsc{Null}}
-\NewEnviron{pseudocode}[2]
+\newenvironment{pseudocode}[2]
 {%
     \ifthenelse{\equal{#1}{continue}}
         {\newpage}
-    \noindent{\textsc{#1} (\textit{#2})\par}
-    \vspace{-7mm}
+        {\noindent{\textsc{#1} (\textit{#2})\par}}
+    \vspace{-12mm}
     \begin{flushleft}\rule{16.59cm}{0.7pt}\end{flushleft}
-    \vspace{-9mm}
+    \vspace{-10mm}
     \begin{fullwidth}[width=\linewidth-12mm,leftmargin=0cm,rightmargin=1cm]
         \begin{algorithm}[H]
             \begin{algorithmic}[1]
-                \fontsize{11}{15}\selectfont\slshape\BODY%
+                \slshape
+}
+{
             \end{algorithmic}
         \end{algorithm}
     \end{fullwidth}
-    \vspace{-9mm}
+    \vspace{-15mm}
     \begin{flushleft}\rule{16.59cm}{0.7pt}\end{flushleft}
     \vspace{-2mm}
 }
 
 % Math box
-\RenewEnviron{math}[1][normal]
+\RenewEnviron{math}[1][normal]  % environ package used to avoid errors
 {%
     \setlength{\mathindent}{3mm}
     \setlength{\jot}{2mm}
@@ -113,23 +113,20 @@
         {\newmdenv[topline=false]{myframe}}
         {\newmdenv[topline=true,bottomline=true]{myframe}}
     \begin{myframe}[userdefinedwidth=16.6cm,linewidth=0.45pt,leftmargin=0mm,innerleftmargin=1mm,innertopmargin=1mm,innerbottommargin=1mm]
-    {%
         \begin{minipage}[c]{15.55cm}
             \vspace{-2mm}
-            {\small
+            \small
             \begin{align}
                 \BODY
             \end{align}
-            }%
             \vspace{-3mm}
         \end{minipage}
         \vspace{-1mm}
-    }
     \end{myframe}
     \vspace{+3mm}
 }
 % Without numbering
-\NewEnviron{math*}[1][normal]
+\NewEnviron{math*}[1][normal]  % environ package used to avoid errors
 {%
     \setlength{\mathindent}{3mm}
     \setlength{\jot}{2mm}
@@ -138,18 +135,15 @@
         {\newmdenv[topline=false]{myframe}}
         {\newmdenv[topline=true,bottomline=true]{myframe}}
     \begin{myframe}[userdefinedwidth=16.6cm,linewidth=0.45pt,leftmargin=0mm,innerleftmargin=1mm,innertopmargin=1mm,innerbottommargin=1mm]
-    {%
         \begin{minipage}[c]{15.55cm}
             \vspace{-2mm}
-            {\small
+            \small
             \begin{align*}
                 \BODY
             \end{align*}
-            }%
             \vspace{-3mm}
         \end{minipage}
         \vspace{-1mm}
-    }
     \end{myframe}
     \vspace{+3mm}
 }
@@ -167,7 +161,7 @@
 {
     \ifthenelse{\equal{\arabic{SolutionCount}}{0}}{}{\newpage}
     \stepcounter{SolutionCount}
-    \noindent\textbf{\fontsize{14}{17}\selectfont #1:}\par
+    \noindent\textbf{\Large #1:}\par
 }
 {\centerrule}
 
