@@ -5,6 +5,8 @@
 \ProvidesClass{solution}[2018/08/25 Assignment solution class]
 \LoadClass[11pt,a4paper]{article}
 
+\newcommand{\useroboto}{true}
+\DeclareOption{noroboto}{\renewcommand{\useroboto}{false}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 
@@ -26,23 +28,11 @@
 \RequirePackage{pgffor}  % foreach loop in latex
 
 \renewcommand{\familydefault}{\sfdefault}
-% Set default fonts, if they exist
-\IfFontExistsTF{Roboto Light}{\setsansfont{Roboto Light}}{}
-% Iterate over possible Roboto Mono fonts to see which exists
-\def\robomonolist{
-    RobotoMono Nerd Font,
-    Roboto Mono Light for Powerline,
-    Roboto Mono Light
-}
-\foreach \robomonofont in \robomonolist% chktex 1
+\ifthenelse{\equal{\useroboto}{true}}
 {%
-    \IfFontExistsTF{\robomonofont}
-    {%
-        \setmonofont[Scale=0.8]{\robomonofont}
-        \breakforeach%
-    }{}
-}
-\setmonofont[Scale=0.8]{RobotoMono Nerd Font}
+    \RequirePackage[light]{roboto}
+    \RequirePackage[light,scale=0.85]{roboto-mono}
+}{}
 \linespread{1.1}
 
 % Code Blocks
@@ -59,7 +49,7 @@
         \begin{minted}
         [
             bgcolor=codegray,
-            baselinestretch=0.9,
+            baselinestretch=1.0,
             fontseries=l,
             frame=single,
             framerule=0pt,

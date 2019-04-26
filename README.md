@@ -37,7 +37,6 @@ This template is intended to be used with XeLaTeX.
 
   The optional argument states the type of assignment (by default "Solution").
 
-## Fonts
-I use the following fonts, and if installed, the solution class picks it up.
-* Roboto Light
-* Roboto Mono Light (or one of Roboto Mono Light for Powerline and RobotoMono Nerd Font)
+### Fonts
+The solution class uses the `roboto` package for the Roboto Light font.
+To disable it, pass the `noroboto` option to the class.
