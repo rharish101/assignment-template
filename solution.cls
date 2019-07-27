@@ -18,7 +18,8 @@
 \RequirePackage{enumitem}  % Setting options for itemize and enumerate
 \RequirePackage{mdframed}  % Boxes for custom math environments
 \RequirePackage{ifthen}  % If-else in latex
-\RequirePackage{array,multirow,booktabs,longtable}  % For tabular environments
+\RequirePackage{tabularx,multirow,booktabs}  % For tabular environments
+\RequirePackage{ltablex}  % For adding auto table breaking over pages for tabularx
 \RequirePackage{fontspec}  % For setting default fonts, if available
 \RequirePackage[plain]{algorithm}  % For the algorithm environment used in pseudocode
 \RequirePackage{algpseudocode}  % For the default formatting used in pseudocode
@@ -156,9 +157,10 @@
 {\centerrule}
 
 % For tabular environment
-\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
-\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+% Remove separation before and after horizontal lines in a table
 \aboverulesep=0ex
 \belowrulesep=0ex
 \renewcommand{\arraystretch}{1.3}

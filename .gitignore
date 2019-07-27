@@ -1,5 +1,7 @@
 example.aux
 example.log
 example.out
+example.fdb_latexmk
+example.fls
 example.pdf
 _minted-example/
