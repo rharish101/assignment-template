@@ -1,6 +1,7 @@
 % ======================================================================
 % Assignment solution template by Harish Rajagopal
 % ======================================================================
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{solution}[2018/08/25 Assignment solution class]
 \LoadClass[11pt,a4paper]{article}
@@ -11,22 +12,20 @@
 \ProcessOptions\relax
 
 \RequirePackage[margin=2.5cm]{geometry}  % For setting margins
-\RequirePackage{environ}  % For custom math environments
 \RequirePackage[gray]{xcolor}  % Make the document grayscale and define custom colors
-\RequirePackage{minted}  % For code
-\RequirePackage[fleqn]{amsmath}  % For the align environment used in custom math environments
-\RequirePackage{enumitem}  % Setting options for itemize and enumerate
-\RequirePackage{mdframed}  % Boxes for custom math environments
-\RequirePackage{ifthen}  % If-else in latex
-\RequirePackage{tabularx,multirow,booktabs}  % For tabular environments
-\RequirePackage{ltablex}  % For adding auto table breaking over pages for tabularx
 \RequirePackage{fontspec}  % For setting default fonts, if available
+\RequirePackage{ifthen}  % If-else in latex
+\RequirePackage{minted}  % For code
 \RequirePackage[plain]{algorithm}  % For the algorithm environment used in pseudocode
 \RequirePackage{algpseudocode}  % For the default formatting used in pseudocode
-\RequirePackage{fullwidth}  % Set width and left-right margins on pseudocode
-\RequirePackage{hyperref}  % For coloring links and setting PDF info
+\RequirePackage[fleqn]{amsmath}  % For the align environment used in custom math environments
+\RequirePackage{environ}  % For custom math environments
+\RequirePackage{mdframed}  % Boxes for custom math environments
 \RequirePackage{titlesec}  % For formatting sections, subsections, etc.
-\RequirePackage{pgffor}  % foreach loop in latex
+\RequirePackage{enumitem}  % Setting options for itemize and enumerate
+\RequirePackage{tabularx,multirow,booktabs}  % For tabular environments
+\RequirePackage{ltablex}  % For adding auto table breaking over pages for tabularx
+\RequirePackage{hyperref}  % For coloring links and setting PDF info
 
 \renewcommand{\familydefault}{\sfdefault}
 \ifthenelse{\equal{\useroboto}{true}}
@@ -36,7 +35,12 @@
 }{}
 \linespread{1.1}
 
+
+% ======================================================================
 % Code Blocks
+% ======================================================================
+
+% Inline code
 \newenvironment{code}[1]
 {%
     \VerbatimEnvironment%
@@ -66,7 +70,8 @@
     \end{minted}%
     \vspace{-8mm}%
 }
-% Code Block from a file
+
+% Code from a file
 \newcommand{\inputcode}[2]
 {%
     \definecolor{codegray}{gray}{0.9}
@@ -93,84 +98,113 @@
     \vspace{-8mm}%
 }
 
+
+% ======================================================================
 % Pseudocode
-\algrenewcommand\alglinenumber[1]{\small\upshape\ttfamily#1\hspace*{2mm}}
+% ======================================================================
+
+\algrenewcommand{\alglinenumber}[1]{\small\upshape\ttfamily\hspace*{5mm}#1\hspace*{3mm}}
 \renewcommand{\algorithmiccomment}[1]{\hfill// #1}
+
 \newcommand{\MyCall}[2]{\textsc{#1(}#2\textsc{)}}% chktex 9
 \newcommand{\Null}{\textsc{Null}}
+
 \newenvironment{pseudocode}[2]
 {%
+    \vspace{2mm}
     \ifthenelse{\equal{#1}{continue}}
         {\newpage}
         {\noindent{\textsc{#1} (\textit{#2})\par}}
-    \vspace{-12mm}
-    \begin{flushleft}\rule{16.59cm}{0.7pt}\end{flushleft}
-    \vspace{-10mm}
-    \begin{fullwidth}[width=\linewidth-12mm,leftmargin=0cm,rightmargin=1cm]
-        \begin{algorithm}[H]
-            \begin{algorithmic}[1]
-                \slshape
+    \vspace{-2mm}
+    \noindent\rule{\textwidth}{0.7pt}
+    \vspace{-5mm}
+    \begin{algorithm}[H]
+        \begin{algorithmic}[1]
+            \slshape
 }
 {
-            \end{algorithmic}
-        \end{algorithm}
-    \end{fullwidth}
-    \vspace{-15mm}
-    \begin{flushleft}\rule{16.59cm}{0.7pt}\end{flushleft}
-    \vspace{-2mm}
+        \end{algorithmic}
+    \end{algorithm}
+    \vspace{-10mm}
+    \noindent\rule{\textwidth}{0.7pt}
+    \vspace{-3mm}
 }
 
-% Math box
-\RenewEnviron{math}[1][normal]  % environ package used to avoid errors
+
+% ======================================================================
+% Math Box
+% ======================================================================
+
+% With equation numbering
+\allowdisplaybreaks%  % Allow equations across multiple pages
+\RenewEnviron{math}  % environ package used to avoid errors
 {%
     \setlength{\mathindent}{3mm}
     \setlength{\jot}{2mm}
-    \vspace{+7mm}
-    \ifthenelse{\equal{#1}{lower}}
-        {\newmdenv[topline=false]{myframe}}
-        {\newmdenv[topline=true,bottomline=true]{myframe}}
-    \begin{myframe}[userdefinedwidth=16.6cm,linewidth=0.45pt,leftmargin=0mm,innerleftmargin=1mm,innertopmargin=1mm,innerbottommargin=1mm]
-        \begin{minipage}[c]{15.55cm}
-            \vspace{-2mm}
-            \small
-            \begin{align}
-                \BODY
-            \end{align}
-            \vspace{-3mm}
-        \end{minipage}
-        \vspace{-1mm}
-    \end{myframe}
-    \vspace{+3mm}
+    \vspace{4mm}
+    \begin{mdframed}%
+    [
+        linewidth=0.45pt,
+        innerleftmargin=1mm,
+        innertopmargin=-1mm,
+        innerbottommargin=3mm,
+    ]%
+        \small
+        \begin{align}
+            \BODY
+        \end{align}
+    \end{mdframed}
+    \vspace{1mm}
 }
-% Without numbering
-\NewEnviron{math*}[1][normal]  % environ package used to avoid errors
+
+% Without equation numbering
+\NewEnviron{math*}  % environ package used to avoid errors
 {%
     \setlength{\mathindent}{3mm}
     \setlength{\jot}{2mm}
-    \vspace{+7mm}
-    \ifthenelse{\equal{#1}{lower}}
-        {\newmdenv[topline=false]{myframe}}
-        {\newmdenv[topline=true,bottomline=true]{myframe}}
-    \begin{myframe}[userdefinedwidth=16.6cm,linewidth=0.45pt,leftmargin=0mm,innerleftmargin=1mm,innertopmargin=1mm,innerbottommargin=1mm]
-        \begin{minipage}[c]{15.55cm}
-            \vspace{-2mm}
-            \small
-            \begin{align*}
-                \BODY
-            \end{align*}
-            \vspace{-3mm}
-        \end{minipage}
-        \vspace{-1mm}
-    \end{myframe}
-    \vspace{+3mm}
+    \vspace{4mm}
+    \begin{mdframed}%
+    [
+        linewidth=0.45pt,
+        innerleftmargin=1mm,
+        innertopmargin=-1mm,
+        innerbottommargin=3mm,
+    ]%
+        \small
+        \begin{align*}
+            \BODY
+        \end{align*}
+    \end{mdframed}
+    \vspace{1mm}
 }
+
+
+% ======================================================================
+% Formatting
+% ======================================================================
+
+% For sections, subsections and subsubsections
+\titleformat{\section}{\vspace{-3mm}\large}{\thesection}{2mm}{\underline}[\vspace{-2mm}]
+\titleformat{\subsection}{\itshape}{\thesubsection}{2mm}{}[\vspace{-2mm}]% chktex 6
+\titleformat{\subsubsection}{}{\thesubsubsection}{2mm}{}
+
+% Lengths
+\setlength{\voffset}{-2mm}
+\setlength{\footskip}{35pt}
+\setlength{\parindent}{8mm}
+\setlength{\parskip}{2mm}
+
+% Used for "solution" environment and "\maketitle" command
+\newcommand{\centerrule}{\begin{center}\rule{45mm}{0.5pt}\end{center}}
+
+
+% ======================================================================
+% Miscellaneous
+% ======================================================================
 
 % Lists
 \setlist[itemize,1]{leftmargin=0mm,rightmargin=-0.5mm}
 \setlist[enumerate,1]{leftmargin=0mm,itemsep=-1mm}
-
-% Used for "solution" environment and "\maketitle" command
-\newcommand{\centerrule}{\begin{center}\rule{45mm}{0.5pt}\end{center}}
 
 % Problem Solution Environment
 \newcounter{SolutionCount}
@@ -191,16 +225,10 @@
 \belowrulesep=0ex
 \renewcommand{\arraystretch}{1.3}
 
-% For sections, subsections and subsubsections
-\titleformat{\section}{\vspace{-3mm}\large}{\thesection}{2mm}{\underline}[\vspace{-2mm}]
-\titleformat{\subsection}{\itshape}{\thesubsection}{2mm}{}[\vspace{-2mm}]% chktex 6
-\titleformat{\subsubsection}{}{\thesubsubsection}{2mm}{}
 
-% Lengths
-\setlength{\voffset}{-2mm}
-\setlength{\footskip}{35pt}
-\setlength{\parindent}{8mm}
-\setlength{\parskip}{2mm}
+% ======================================================================
+% Document Details
+% ======================================================================
 
 % Default author
 \author{%
