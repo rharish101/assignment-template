@@ -41,30 +41,56 @@
 {%
     \VerbatimEnvironment%
     \definecolor{codegray}{gray}{0.9}
-    \noindent\begin{minipage}{16.6cm}
-        \renewcommand{\theFancyVerbLine}
-        {
-            \ttfamily\textcolor[gray]{0.5}
-            {\scriptsize{\arabic{FancyVerbLine}}}
-        }
-        \begin{minted}
-        [
-            bgcolor=codegray,
-            baselinestretch=1.0,
-            fontseries=l,
-            frame=single,
-            framerule=0pt,
-            framesep=0.5mm,
-            linenos,
-            numbersep=1mm,
-            xleftmargin=9mm,
-            autogobble,
-        ]
-        {#1}%
+    \renewcommand{\theFancyVerbLine}
+    {
+        \ttfamily\textcolor[gray]{0.5}
+        {\scriptsize{\arabic{FancyVerbLine}}}
+    }
+    \begin{minted}
+    [
+        bgcolor=codegray,
+        baselinestretch=1.0,
+        fontseries=l,
+        frame=single,
+        framerule=0pt,
+        framesep=0.5mm,
+        linenos,
+        numbersep=1mm,
+        xleftmargin=9mm,
+        autogobble,
+        breaklines,
+    ]
+    {#1}%
 }
 {
     \end{minted}%
-    \end{minipage}%
+    \vspace{-8mm}%
+}
+% Code Block from a file
+\newcommand{\inputcode}[2]
+{%
+    \definecolor{codegray}{gray}{0.9}
+    \renewcommand{\theFancyVerbLine}
+    {%
+        \ttfamily\textcolor[gray]{0.5}
+        {\scriptsize{\arabic{FancyVerbLine}}}
+    }
+    \inputminted%
+    [
+        bgcolor=codegray,
+        baselinestretch=1.0,
+        fontseries=l,
+        frame=single,
+        framerule=0pt,
+        framesep=0.5mm,
+        linenos,
+        numbersep=1mm,
+        xleftmargin=9mm,
+        autogobble,
+        breaklines,
+    ]%
+    {#1}{#2}%
+    \vspace{-8mm}%
 }
 
 % Pseudocode
