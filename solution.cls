@@ -6,6 +6,7 @@
 \ProvidesClass{solution}[2018/08/25 Assignment solution class]
 \LoadClass[11pt,a4paper]{article}
 
+% Add a new option "noroboto" for this class, which avoids using roboto
 \newcommand{\useroboto}{true}
 \DeclareOption{noroboto}{\renewcommand{\useroboto}{false}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -23,8 +24,8 @@
 \RequirePackage{mdframed}  % Boxes for custom math environments
 \RequirePackage{titlesec}  % For formatting sections, subsections, etc.
 \RequirePackage{enumitem}  % Setting options for itemize and enumerate
-\RequirePackage{tabularx,multirow,booktabs}  % For tabular environments
-\RequirePackage{ltablex}  % For adding auto table breaking over pages for tabularx
+\RequirePackage{tabularx}  % For custom auto-size columns in tables
+\RequirePackage{booktabs}  % For good-looking horizontal lines in tables
 \RequirePackage{hyperref}  % For coloring links and setting PDF info
 
 \renewcommand{\familydefault}{\sfdefault}
@@ -40,15 +41,16 @@
 % Code Blocks
 % ======================================================================
 
+% Background color for code blocks
+\definecolor{codegray}{gray}{0.9}
+
 % Inline code
 \newenvironment{code}[1]
 {%
     \VerbatimEnvironment%
-    \definecolor{codegray}{gray}{0.9}
     \renewcommand{\theFancyVerbLine}
     {
-        \ttfamily\textcolor[gray]{0.5}
-        {\scriptsize{\arabic{FancyVerbLine}}}
+        \texttt{\textcolor[gray]{0.5}{\scriptsize{\arabic{FancyVerbLine}}}}
     }
     \begin{minted}
     [
@@ -74,11 +76,9 @@
 % Code from a file
 \newcommand{\inputcode}[2]
 {%
-    \definecolor{codegray}{gray}{0.9}
     \renewcommand{\theFancyVerbLine}
     {%
-        \ttfamily\textcolor[gray]{0.5}
-        {\scriptsize{\arabic{FancyVerbLine}}}
+        \texttt{\textcolor[gray]{0.5}{\scriptsize{\arabic{FancyVerbLine}}}}
     }
     \inputminted%
     [
@@ -103,9 +103,11 @@
 % Pseudocode
 % ======================================================================
 
+% Custom formatting for pseudocode
 \algrenewcommand{\alglinenumber}[1]{\small\upshape\ttfamily\hspace*{5mm}#1\hspace*{3mm}}
 \renewcommand{\algorithmiccomment}[1]{\hfill// #1}
 
+% Custom commands for pseudocode
 \newcommand{\MyCall}[2]{\textsc{#1(}#2\textsc{)}}% chktex 9
 \newcommand{\Null}{\textsc{Null}}
 
@@ -135,13 +137,15 @@
 % Math Box
 % ======================================================================
 
+% Allow equations across multiple pages
+\allowdisplaybreaks%
+
 % With equation numbering
-\allowdisplaybreaks%  % Allow equations across multiple pages
 \RenewEnviron{math}  % environ package used to avoid errors
 {%
     \setlength{\mathindent}{3mm}
     \setlength{\jot}{2mm}
-    \vspace{4mm}
+    \vspace{2mm}
     \begin{mdframed}%
     [
         linewidth=0.45pt,
@@ -162,7 +166,7 @@
 {%
     \setlength{\mathindent}{3mm}
     \setlength{\jot}{2mm}
-    \vspace{4mm}
+    \vspace{2mm}
     \begin{mdframed}%
     [
         linewidth=0.45pt,
@@ -177,6 +181,27 @@
     \end{mdframed}
     \vspace{1mm}
 }
+
+
+% ======================================================================
+% Tables
+% ======================================================================
+
+% Vertically align tabularx columns
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+
+% Columns for horizontal alignment
+% NOTE: To be used only in tabularx
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+% Remove separation before and after horizontal lines in a table
+\aboverulesep=0ex
+\belowrulesep=0ex
+
+% Increase cell height
+\renewcommand{\arraystretch}{1.3}
 
 
 % ======================================================================
@@ -210,20 +235,12 @@
 \newcounter{SolutionCount}
 \newenvironment{solution}[1][Question \arabic{SolutionCount}]
 {
-    \ifthenelse{\equal{\arabic{SolutionCount}}{0}}{}{\newpage}
+    \ifthenelse{\equal{\arabic{SolutionCount}}{0}}
+        {}{\newpage}
     \stepcounter{SolutionCount}
     \noindent\textbf{\Large #1:}\par
 }
 {\centerrule}
-
-% For tabular environment
-\newcolumntype{L}{>{\raggedright\arraybackslash}X}
-\newcolumntype{C}{>{\centering\arraybackslash}X}
-\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
-% Remove separation before and after horizontal lines in a table
-\aboverulesep=0ex
-\belowrulesep=0ex
-\renewcommand{\arraystretch}{1.3}
 
 
 % ======================================================================
