@@ -45,6 +45,8 @@
 \definecolor{codegray}{gray}{0.9}
 
 % Inline code
+% Args:
+%   #1: The programming language
 \newenvironment{code}[1]
 {%
     \VerbatimEnvironment%
@@ -74,6 +76,9 @@
 }
 
 % Code from a file
+% Args:
+%   #1: The programming language
+%   #2: The input file path
 \newcommand{\inputcode}[2]
 {%
     \renewcommand{\theFancyVerbLine}
@@ -111,6 +116,9 @@
 \newcommand{\MyCall}[2]{\textsc{#1(}#2\textsc{)}}% chktex 9
 \newcommand{\Null}{\textsc{Null}}
 
+% Args:
+%   #1: The name of the function
+%   #2: The function's arguments
 \newenvironment{pseudocode}[2]
 {%
     \vspace{2mm}
@@ -140,11 +148,15 @@
 % Allow equations across multiple pages
 \allowdisplaybreaks%
 
+% Formatting for math environments
+\setlength{\mathindent}{3mm}
+\setlength{\jot}{2mm}  % line spacing in amsmath
+
 % With equation numbering
-\RenewEnviron{math}  % environ package used to avoid errors
+% Args:
+%   #1: The underlying amsmath environment to use (eg. align, gather)
+\RenewEnviron{math}[1][align]  % environ package used to avoid errors
 {%
-    \setlength{\mathindent}{3mm}
-    \setlength{\jot}{2mm}
     \vspace{2mm}
     \begin{mdframed}%
     [
@@ -154,18 +166,18 @@
         innerbottommargin=3mm,
     ]%
         \small
-        \begin{align}
-            \BODY
-        \end{align}
+        \ifthenelse{\equal{#1}{align}}
+            {\begin{align} \BODY \end{align}}
+            {\begin{gather} \BODY \end{gather}}
     \end{mdframed}
     \vspace{1mm}
 }
 
 % Without equation numbering
-\NewEnviron{math*}  % environ package used to avoid errors
+% Args:
+%   #1: The underlying amsmath environment to use (eg. align, gather)
+\NewEnviron{math*}[1][align]  % environ package used to avoid errors
 {%
-    \setlength{\mathindent}{3mm}
-    \setlength{\jot}{2mm}
     \vspace{2mm}
     \begin{mdframed}%
     [
@@ -175,9 +187,9 @@
         innerbottommargin=3mm,
     ]%
         \small
-        \begin{align*}
-            \BODY
-        \end{align*}
+        \ifthenelse{\equal{#1}{align}}
+            {\begin{align*} \BODY \end{align*}}
+            {\begin{gather*} \BODY \end{gather*}}
     \end{mdframed}
     \vspace{1mm}
 }
@@ -233,6 +245,8 @@
 
 % Problem Solution Environment
 \newcounter{SolutionCount}
+% Args:
+%   #1: The title for the question
 \newenvironment{solution}[1][Question \arabic{SolutionCount}]
 {
     \ifthenelse{\equal{\arabic{SolutionCount}}{0}}
@@ -254,6 +268,11 @@
 }
 
 % Set details
+% Args:
+%   #1: The title for the document
+%   #2: The course number
+%   #3: The course title
+%   #4: The name of the assignment
 \newcommand{\setdetails}[4][Solution]
 {%
     \newcommand{\SolutionName}{#1}
