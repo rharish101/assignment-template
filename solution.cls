@@ -4,7 +4,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{solution}[2018/08/25 Assignment solution class]
-\LoadClass[11pt,a4paper]{article}
+\LoadClass[11pt,a4paper]{report}
 
 % Add a new option "noroboto" for this class, which avoids using roboto
 \newcommand{\useroboto}{true}
@@ -22,10 +22,10 @@
 \RequirePackage[fleqn]{amsmath}  % For the align environment used in custom math environments
 \RequirePackage{environ}  % For custom math environments
 \RequirePackage{mdframed}  % Boxes for custom math environments
-\RequirePackage{titlesec}  % For formatting sections, subsections, etc.
-\RequirePackage{enumitem}  % Setting options for itemize and enumerate
 \RequirePackage{tabularx}  % For custom auto-size columns in tables
 \RequirePackage{booktabs}  % For good-looking horizontal lines in tables
+\RequirePackage{titlesec}  % For formatting sections, subsections, etc.
+\RequirePackage{enumitem}  % Setting options for itemize and enumerate
 \RequirePackage{hyperref}  % For coloring links and setting PDF info
 
 \renewcommand{\familydefault}{\sfdefault}
@@ -220,9 +220,15 @@
 % Formatting
 % ======================================================================
 
+% Chapter is used for formatting the solution environment
+\titleformat{\chapter}{\bfseries\Large}{}{0mm}{}
+\titlespacing{\chapter}{0mm}{1mm}{1mm}
+
 % For sections, subsections and subsubsections
-\titleformat{\section}{\vspace{-3mm}\large}{\thesection}{2mm}{\underline}[\vspace{-2mm}]
-\titleformat{\subsection}{\itshape}{\thesubsection}{2mm}{}[\vspace{-2mm}]% chktex 6
+\titleformat{\section}{\large}{\thesection}{2mm}{\underline}
+\titlespacing{\section}{0mm}{1mm}{1mm}
+\titleformat{\subsection}{\itshape}{\thesubsection}{2mm}{}% chktex 6
+\titlespacing{\subsection}{0mm}{0mm}{0mm}
 \titleformat{\subsubsection}{}{\thesubsubsection}{2mm}{}
 
 % Lengths
@@ -244,15 +250,13 @@
 \setlist[enumerate,1]{leftmargin=0mm,itemsep=-1mm}
 
 % Problem Solution Environment
-\newcounter{SolutionCount}
 % Args:
 %   #1: The title for the question
-\newenvironment{solution}[1][Question \arabic{SolutionCount}]
+\newenvironment{solution}[1][Question \thechapter]
 {
-    \ifthenelse{\equal{\arabic{SolutionCount}}{0}}
-        {}{\newpage}
-    \stepcounter{SolutionCount}
-    \noindent\textbf{\Large #1:}\par
+    \ifthenelse{\equal{\thechapter}{0}}
+        {\let\clearpage\relax}{}
+    \chapter{#1:}
 }
 {\centerrule}
 
