@@ -42,7 +42,7 @@
 % ======================================================================
 
 % Background color for code blocks
-\definecolor{codegray}{gray}{0.9}
+\definecolor{codegray}{gray}{0.95}
 
 % Inline code
 % Args:
