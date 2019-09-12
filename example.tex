@@ -9,8 +9,8 @@
     \maketitle
 
     \begin{solution}[{[Problem No.]}]
-        \section*{[Section]}
-            \subsection*{[Sub-Section]}
+        \section{[Section]}
+            \subsection{[Sub-Section]}
             Sample Text.
 
             \begin{code}{c}
@@ -22,39 +22,32 @@
                 sample &=\\
                 math &=
             \end{math*}
-            \vspace{-2mm}
 
             \begin{pseudocode}{Sample-Function}{args}
                 \State sample
                 \State pseudocode
             \end{pseudocode}
-            \vspace{-4mm}
 
             \begin{itemize}
                 \item Sample\\[-8mm]
                 \item Bullets
             \end{itemize}
-            \vspace{-6mm}
 
             \begin{enumerate}
                 \item Sample
                 \item List
             \end{enumerate}
-            \vspace{-6mm}
 
-            \begin{center}
-                \textit{Sample Table}
-            \end{center}
-            \vspace{-1mm}
-            \begin{tabularx}{\textwidth}{|C|C|C|C|}
-                \toprule
-                One & Two & Three & Four\\
-                \midrule\midrule
-                1 & 2 & 3 & 4\\
-                \midrule
-                5 & 6 & 7 & 8\\
-                \bottomrule
-            \end{tabularx}
-            \vspace{-2mm}
+            \begin{table}[H]
+                \caption{Sample Table}
+                \begin{tabularx}{\textwidth}{C C C C}
+                    \toprule
+                    One & Two & Three & Four\\
+                    \midrule
+                    1 & 2 & 3 & 4\\
+                    5 & 6 & 7 & 8\\
+                    \bottomrule
+                \end{tabularx}
+            \end{table}
     \end{solution}
 \end{document}

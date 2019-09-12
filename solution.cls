@@ -23,7 +23,8 @@
 \RequirePackage{environ}  % For custom math environments
 \RequirePackage{mdframed}  % Boxes for custom math environments
 \RequirePackage{tabularx}  % For custom auto-size columns in tables
-\RequirePackage{booktabs}  % For good-looking horizontal lines in tables
+\RequirePackage{booktabs}  % For customizing horizontal lines in tables
+\RequirePackage{caption}  % For customizing caption spacing in tables
 \RequirePackage{titlesec}  % For formatting sections, subsections, etc.
 \RequirePackage{enumitem}  % Setting options for itemize and enumerate
 \RequirePackage{hyperref}  % For coloring links and setting PDF info
@@ -214,6 +215,9 @@
 
 % Increase cell height
 \renewcommand{\arraystretch}{1.3}
+
+% Increase spacing between table and its caption
+\captionsetup[table]{skip=2mm}
 
 
 % ======================================================================
