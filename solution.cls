@@ -9,6 +9,9 @@
 % Add a new option "noroboto" for this class, which avoids using roboto
 \newcommand{\useroboto}{true}
 \DeclareOption{noroboto}{\renewcommand{\useroboto}{false}}
+% Add a new option "nobreak" for this class, which avoids page breaks between questions
+\newcommand{\qbreak}{true}
+\DeclareOption{nobreak}{\renewcommand{\qbreak}{false}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 
@@ -258,8 +261,15 @@
 %   #1: The title for the question
 \newenvironment{solution}[1][Question \thechapter]
 {
-    \ifthenelse{\equal{\thechapter}{0}}
-        {\let\clearpage\relax}{}
+    % If page breaks after questions are disabled
+    \ifthenelse{\equal{\qbreak}{false}}
+        {\let\clearpage\relax}  % disable page break
+        {
+            % If the question is the first one
+            \ifthenelse{\equal{\thechapter}{0}}
+                {\let\clearpage\relax}  % disable page break
+                {}
+        }
     \chapter{#1:}
 }
 {\centerrule}
