@@ -168,6 +168,7 @@
         innerleftmargin=1mm,
         innertopmargin=-1mm,
         innerbottommargin=3mm,
+        nobreak=false,
     ]%
         \small
         \ifthenelse{\equal{#1}{align}}
@@ -189,6 +190,7 @@
         innerleftmargin=1mm,
         innertopmargin=-1mm,
         innerbottommargin=3mm,
+        nobreak=false,
     ]%
         \small
         \ifthenelse{\equal{#1}{align}}
