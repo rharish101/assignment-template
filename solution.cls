@@ -22,7 +22,6 @@
 \RequirePackage{minted}  % For code
 \RequirePackage[plain]{algorithm}  % For the algorithm environment used in pseudocode
 \RequirePackage{algpseudocode}  % For the default formatting used in pseudocode
-\RequirePackage[fleqn]{amsmath}  % For the align environment used in custom math environments
 \RequirePackage{environ}  % For custom math environments
 \RequirePackage{mdframed}  % Boxes for custom math environments
 \RequirePackage{tabularx}  % For custom auto-size columns in tables
@@ -31,6 +30,7 @@
 \RequirePackage{titlesec}  % For formatting sections, subsections, etc.
 \RequirePackage{enumitem}  % Setting options for itemize and enumerate
 \RequirePackage{hyperref}  % For coloring links and setting PDF info
+\RequirePackage{nccmath}  % For the aligned environments used in custom math environments (NOTE: must be loaded after hyperref)
 
 \renewcommand{\familydefault}{\sfdefault}
 \ifthenelse{\equal{\useroboto}{true}}
@@ -153,7 +153,6 @@
 \allowdisplaybreaks%
 
 % Formatting for math environments
-\setlength{\mathindent}{3mm}
 \setlength{\jot}{2mm}  % line spacing in amsmath
 
 % With equation numbering
@@ -165,15 +164,17 @@
     \begin{mdframed}%
     [
         linewidth=0.45pt,
-        innerleftmargin=1mm,
+        innerleftmargin=4mm,
         innertopmargin=-1mm,
         innerbottommargin=3mm,
         nobreak=false,
     ]%
         \small
-        \ifthenelse{\equal{#1}{align}}
-            {\begin{align} \BODY \end{align}}
-            {\begin{gather} \BODY \end{gather}}
+        \begin{fleqn}
+            \ifthenelse{\equal{#1}{align}}
+                {\begin{align} \BODY \end{align}}
+                {\begin{gather} \BODY \end{gather}}
+        \end{fleqn}
     \end{mdframed}
     \vspace{1mm}
 }
@@ -187,15 +188,17 @@
     \begin{mdframed}%
     [
         linewidth=0.45pt,
-        innerleftmargin=1mm,
+        innerleftmargin=4mm,
         innertopmargin=-1mm,
         innerbottommargin=3mm,
         nobreak=false,
     ]%
         \small
-        \ifthenelse{\equal{#1}{align}}
-            {\begin{align*} \BODY \end{align*}}
-            {\begin{gather*} \BODY \end{gather*}}
+        \begin{fleqn}
+            \ifthenelse{\equal{#1}{align}}
+                {\begin{align*} \BODY \end{align*}}
+                {\begin{gather*} \BODY \end{gather*}}
+        \end{fleqn}
     \end{mdframed}
     \vspace{1mm}
 }
