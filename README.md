@@ -29,7 +29,7 @@ This template is intended to be used with XeLaTeX.
 * New columns for tables: `L`, `C`, `R` are provided for left, center and right horizontal alignment with centered vertical alignment.
   These are auto-sizing columns to be used with the `tabularx` environment.
 
-  For tables spanning multiple pages, use the `ltabelx` environment (not included in the class), with the `keepXColumns` argument (to preserve tabularx's column behaviour).
+  For tables spanning multiple pages, use the `ltablex` environment (not included in the class), with the `keepXColumns` argument (to preserve tabularx's column behaviour).
 
 * `solution` environment: For writing solutions to individual questions.
   It takes one optional argument for the title of the question.
