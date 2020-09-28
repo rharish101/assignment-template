@@ -287,7 +287,7 @@
 % Default author
 \author{%
     Harish Rajagopal\\
-    160552
+    20-946-349%chktex 8
 }
 
 % Set details
