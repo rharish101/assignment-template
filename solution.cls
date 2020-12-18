@@ -12,6 +12,10 @@
 % Add a new option "nobreak" for this class, which avoids page breaks between questions
 \newcommand{\qbreak}{true}
 \DeclareOption{nobreak}{\renewcommand{\qbreak}{false}}
+% Add a new option "nocols" for this class, which avoids creating custom column types (for use with tabulary)
+\newcommand{\newcols}{true}
+\DeclareOption{nocols}{\renewcommand{\newcols}{false}}
+
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 
@@ -213,9 +217,13 @@
 
 % Columns for horizontal alignment
 % NOTE: To be used only in tabularx
-\newcolumntype{L}{>{\raggedright\arraybackslash}X}
-\newcolumntype{C}{>{\centering\arraybackslash}X}
-\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\ifthenelse{\equal{\newcols}{true}}
+{
+    \newcolumntype{L}{>{\raggedright\arraybackslash}X}
+    \newcolumntype{C}{>{\centering\arraybackslash}X}
+    \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+}
+{}
 
 % Remove separation before and after horizontal lines in a table
 \aboverulesep=0ex
