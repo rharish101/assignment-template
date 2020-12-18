@@ -225,10 +225,6 @@
 }
 {}
 
-% Remove separation before and after horizontal lines in a table
-\aboverulesep=0ex
-\belowrulesep=0ex
-
 % Increase cell height
 \renewcommand{\arraystretch}{1.3}
 
