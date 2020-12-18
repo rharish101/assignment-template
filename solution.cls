@@ -237,7 +237,7 @@
 \titlespacing{\chapter}{0mm}{1mm}{1mm}
 
 % For sections, subsections and subsubsections
-\titleformat{\section}{\large}{\thesection}{2mm}{\underline}
+\titleformat{\section}{\bfseries\large}{\thesection}{2mm}{}
 \titlespacing{\section}{0mm}{1mm}{1mm}
 \titleformat{\subsection}{\itshape}{\thesubsection}{2mm}{}% chktex 6
 \titlespacing{\subsection}{0mm}{0mm}{0mm}
