@@ -12,9 +12,6 @@
 % Add a new option "nobreak" for this class, which avoids page breaks between questions
 \newcommand{\qbreak}{true}
 \DeclareOption{nobreak}{\renewcommand{\qbreak}{false}}
-% Add a new option "nocols" for this class, which avoids creating custom column types (for use with tabulary)
-\newcommand{\newcols}{true}
-\DeclareOption{nocols}{\renewcommand{\newcols}{false}}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
@@ -28,7 +25,7 @@
 \RequirePackage{algpseudocode}  % For the default formatting used in pseudocode
 \RequirePackage{environ}  % For custom math environments
 \RequirePackage{mdframed}  % Boxes for custom math environments
-\RequirePackage{tabularx}  % For custom auto-size columns in tables
+\RequirePackage{tabulary}  % For custom auto-size columns in tables
 \RequirePackage{booktabs}  % For customizing horizontal lines in tables
 \RequirePackage{caption}  % For customizing caption spacing in tables
 \RequirePackage{titlesec}  % For formatting sections, subsections, etc.
@@ -212,18 +209,17 @@
 % Tables
 % ======================================================================
 
-% Vertically align tabularx columns
-\renewcommand{\tabularxcolumn}[1]{m{#1}}
-
-% Columns for horizontal alignment
-% NOTE: To be used only in tabularx
-\ifthenelse{\equal{\newcols}{true}}
-{
-    \newcolumntype{L}{>{\raggedright\arraybackslash}X}
-    \newcolumntype{C}{>{\centering\arraybackslash}X}
-    \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
-}
-{}
+% Patch for tabulary to have fixed width tables:
+% https://tex.stackexchange.com/a/87111/147074
+\makeatletter
+\patchcmd\TY@checkmin%
+{\def\TY@ratio{1}}
+{%
+    \@tempdima\dimexpr\p@*\TY@linewidth/\TY@tablewidth\relax
+    \edef\TY@ratio{\strip@pt\@tempdima}%
+}{}{}
+\let\TY@@checkmin\TY@checkmin%
+\makeatother
 
 % Increase cell height
 \renewcommand{\arraystretch}{1.3}
