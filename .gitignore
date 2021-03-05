@@ -1,7 +1,8 @@
-example.aux
-example.log
-example.out
-example.fdb_latexmk
-example.fls
-example.pdf
-_minted-example/
+*.aux
+*.log
+*.out
+*.fdb_latexmk
+*.fls
+*.pdf
+*.xdv
+_minted-*/
