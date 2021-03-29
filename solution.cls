@@ -28,6 +28,7 @@
 \RequirePackage{tabulary}  % For custom auto-size columns in tables
 \RequirePackage{booktabs}  % For customizing horizontal lines in tables
 \RequirePackage{caption}  % For customizing caption spacing in tables
+\RequirePackage{titling}  % For formatting the title
 \RequirePackage{titlesec}  % For formatting sections, subsections, etc.
 \RequirePackage{enumitem}  % Setting options for itemize and enumerate
 \RequirePackage{hyperref}  % For coloring links and setting PDF info
@@ -285,10 +286,9 @@
 % ======================================================================
 
 % Default author
-\author{%
-    Harish Rajagopal\\
-    20-946-349%chktex 8
-}
+\newcommand{\authorname}{Harish Rajagopal}
+\newcommand{\authorid}{20-946-349}%chktex 8
+\author{\authorname\\\authorid}
 
 % Set details
 % Args:
@@ -306,7 +306,7 @@
     {%
         colorlinks,
         pdfinfo={%
-            Author={Harish Rajagopal --- 160552},
+            Author={\authorname{} --- \authorid},
             Title={{\CourseNo}: {\AssignName} {\SolutionName}},
             Subject={Solution of {\AssignName} for {\CourseNo}: {\CourseName}}
         }
@@ -319,16 +319,10 @@
     \begin{center}
         \rmfamily
         {\huge \SolutionName}\\[+2mm]
-        {\Large \CourseNo: \CourseName\\[+2mm]
-                \AssignName}\\[+3mm]
-        \makeatletter
-        {%
-            \large
-            \begin{tabular}[t]{c}
-                \@author%
-            \end{tabular}
-        }
-        \makeatother\\[+3mm]
+        {\Large \CourseNo: \CourseName\\[+2mm] \AssignName}\\[+3mm]
+        \begin{tabular}[t]{c}
+            \large\theauthor%
+        \end{tabular}\\[+3mm]
     \end{center}
     \centerrule\vspace{1mm}
 }
