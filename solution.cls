@@ -160,7 +160,7 @@
 % With equation numbering
 % Args:
 %   #1: The underlying amsmath environment to use (eg. align, gather)
-\RenewEnviron{math}[1][align]  % environ package used to avoid errors
+\RenewEnviron{math}[1][gather]  % environ package used to avoid errors
 {%
     \vspace{2mm}
     \begin{mdframed}%
@@ -184,7 +184,7 @@
 % Without equation numbering
 % Args:
 %   #1: The underlying amsmath environment to use (eg. align, gather)
-\NewEnviron{math*}[1][align]  % environ package used to avoid errors
+\NewEnviron{math*}[1][gather]  % environ package used to avoid errors
 {%
     \vspace{2mm}
     \begin{mdframed}%
