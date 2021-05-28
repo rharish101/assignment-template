@@ -52,3 +52,18 @@ This template is intended to be used with XeLaTeX.
 Since the template uses the `minted` package for code blocks, the `-shell-escape` argument is required for compilation.
 
 A `.latexmkrc` file is provided in the root of this repository for the default configuration.
+
+To compile, run:
+```sh
+make
+```
+
+To clean-up extra files generated during compilation, run:
+```sh
+make clean
+```
+
+To clean-up all files generated during compilation (including the PDFs), run:
+```sh
+make clean-all
+```
