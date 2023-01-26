@@ -16,6 +16,7 @@
 \RequirePackage[margin=2.5cm]{geometry}  % For setting margins
 \RequirePackage[gray]{xcolor}  % Make the document grayscale and define custom colors
 \RequirePackage{fontspec}  % For setting default fonts, if available
+\RequirePackage{unicode-math}  % For setting math fonts
 \RequirePackage{ifthen}  % If-else in latex
 \RequirePackage{minted}  % For code
 \RequirePackage[plain]{algorithm}  % For the algorithm environment used in pseudocode
@@ -31,9 +32,9 @@
 \RequirePackage{hyperref}  % For coloring links and setting PDF info
 \RequirePackage{nccmath}  % For the aligned environments used in custom math environments (NOTE: must be loaded after hyperref)
 
-\renewcommand{\familydefault}{\sfdefault}
-\setsansfont{Roboto Light}
-\setmonofont[Scale=0.85]{Roboto Mono Light}
+\setmainfont{TeX Gyre Pagella}
+\setmathfont{TeX Gyre Pagella Math}
+\setmonofont[Scale=0.85]{Roboto Mono}
 \linespread{1.1}
 
 
@@ -288,7 +289,6 @@
 \renewcommand{\maketitle}
 {%
     \begin{center}
-        \rmfamily
         {\huge \SolutionName}\\[+2mm]
         {\Large \CourseNo: \CourseName\\[+2mm] \AssignName}\\[+3mm]
         \begin{tabular}[t]{c}
