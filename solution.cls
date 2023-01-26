@@ -34,7 +34,7 @@
 
 \setmainfont{TeX Gyre Pagella}
 \setmathfont{TeX Gyre Pagella Math}
-\setmonofont[Scale=0.85]{Roboto Mono}
+\setmonofont[Scale=0.85]{Fira Mono}
 \linespread{1.1}
 
 
