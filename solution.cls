@@ -50,64 +50,41 @@
 % Background color for code blocks
 \definecolor{codegray}{gray}{0.95}
 
+% Default style for minted
+\setminted{
+    autogobble,
+    baselinestretch=1.0,
+    breaklines,
+    bgcolor=codegray,
+    fontseries=l,
+    frame=single,
+    framerule=0pt,
+    framesep=0.5mm,
+    linenos,
+    numbersep=0pt,
+    xleftmargin=6mm,
+}
+
+% Change line numbering style for code blocks
+\renewcommand{\theFancyVerbLine}
+{
+    \texttt{\textcolor[gray]{0.5}{\scriptsize{\arabic{FancyVerbLine}}}}
+}
+
 % Inline code
 % Args:
-%   #1: The programming language
-\newenvironment{code}[1]
-{%
-    \VerbatimEnvironment%
-    \renewcommand{\theFancyVerbLine}
-    {
-        \texttt{\textcolor[gray]{0.5}{\scriptsize{\arabic{FancyVerbLine}}}}
-    }
-    \begin{minted}
-    [
-        bgcolor=codegray,
-        baselinestretch=1.0,
-        fontseries=l,
-        frame=single,
-        framerule=0pt,
-        framesep=0.5mm,
-        linenos,
-        numbersep=1mm,
-        xleftmargin=9mm,
-        autogobble,
-        breaklines,
-    ]
-    {#1}%
-}
-{
-    \end{minted}%
-    \vspace{-8mm}%
-}
+%   #1: The custom options for the minted environment
+%   #2: The programming language
+\newenvironment{code}[2][]
+{\VerbatimEnvironment\begin{minted}[#1]{#2}}
+{\end{minted}}%chktex 31
 
 % Code from a file
 % Args:
-%   #1: The programming language
-%   #2: The input file path
-\newcommand{\inputcode}[2]
-{%
-    \renewcommand{\theFancyVerbLine}
-    {%
-        \texttt{\textcolor[gray]{0.5}{\scriptsize{\arabic{FancyVerbLine}}}}
-    }
-    \inputminted%
-    [
-        bgcolor=codegray,
-        baselinestretch=1.0,
-        fontseries=l,
-        frame=single,
-        framerule=0pt,
-        framesep=0.5mm,
-        linenos,
-        numbersep=1mm,
-        xleftmargin=9mm,
-        autogobble,
-        breaklines,
-    ]%
-    {#1}{#2}%
-    \vspace{-8mm}%
-}
+%   #1: The custom options for the minted environment
+%   #2: The programming language
+%   #3: The input file path
+\newcommand{\inputcode}[3][]{\inputminted[#1]{#2}{#3}}
 
 
 % ======================================================================
