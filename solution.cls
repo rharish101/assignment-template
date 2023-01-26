@@ -6,9 +6,6 @@
 \ProvidesClass{solution}[2018/08/25 Assignment solution class]
 \LoadClass[11pt,a4paper]{report}
 
-% Add a new option "noroboto" for this class, which avoids using roboto
-\newcommand{\useroboto}{true}
-\DeclareOption{noroboto}{\renewcommand{\useroboto}{false}}
 % Add a new option "nobreak" for this class, which avoids page breaks between questions
 \newcommand{\qbreak}{true}
 \DeclareOption{nobreak}{\renewcommand{\qbreak}{false}}
@@ -35,11 +32,8 @@
 \RequirePackage{nccmath}  % For the aligned environments used in custom math environments (NOTE: must be loaded after hyperref)
 
 \renewcommand{\familydefault}{\sfdefault}
-\ifthenelse{\equal{\useroboto}{true}}
-{%
-    \setsansfont{Roboto Light}
-    \setmonofont[Scale=0.85]{Roboto Mono Light}
-}{}
+\setsansfont{Roboto Light}
+\setmonofont[Scale=0.85]{Roboto Mono Light}
 \linespread{1.1}
 
 
