@@ -37,8 +37,8 @@
 \renewcommand{\familydefault}{\sfdefault}
 \ifthenelse{\equal{\useroboto}{true}}
 {%
-    \RequirePackage[light]{roboto}
-    \RequirePackage[light,scale=0.85]{roboto-mono}
+    \setsansfont{Roboto Light}
+    \setmonofont[Scale=0.85]{Roboto Mono Light}
 }{}
 \linespread{1.1}
 

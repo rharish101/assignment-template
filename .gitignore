@@ -4,5 +4,4 @@
 *.fdb_latexmk
 *.fls
 *.pdf
-*.xdv
 _minted-*/
