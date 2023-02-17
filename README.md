@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2019 Harish Rajagopal <harish.rajagopals@gmail.com>
+
+SPDX-License-Identifier: MIT
+-->
+
 # Assignment Solution Template
 
 This repository contains my template for assignment submissions.
@@ -63,3 +69,10 @@ To clean-up all files generated during compilation (including the PDFs), run:
 ```sh
 make clean-all
 ```
+
+## Licenses
+This repository uses [REUSE](https://reuse.software/) to document licenses.
+Each file has a header containing copyright and license information.
+The license files that are used in this project can be found in the [LICENSES](./LICENSES) directory.
+
+The MIT license is placed in [LICENSE](./LICENSE), to signify that it constitutes the majority of the codebase, and for compatibility with GitHub.
